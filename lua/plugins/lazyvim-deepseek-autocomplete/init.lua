@@ -1,7 +1,7 @@
 local deepseek = require("plugins.lazyvim-deepseek-autocomplete.deepseek")
 local config = require("plugins.lazyvim-deepseek-autocomplete.config")
 
-local win_id = nil -- ID de la ventana flotante
+local win_id = nil
 
 local function close_popup()
 	if win_id then
@@ -53,7 +53,25 @@ return {
 			local current_line = vim.api.nvim_get_current_line()
 			local autocomplete = deepseek.get_completion(config.get_config, current_line)
 
-			print(autocomplete)
+			local height = 3
+
+			local border = "rounded"
+
+			local opts = {
+				relative = "cursor",
+				row = 1,
+				col = 0,
+				width = 3,
+				height = height,
+				border = border,
+				title = "Ventana flotante",
+				focusable = false,
+			}
+
+			local buf = vim.api.nvim_create_buf(false, true)
+			vim.api.nvim_buf_set_lines(buf, 0, -1, false, { autocomplete })
+
+			vim.api.nvim_open_win(buf, false, opts)
 
 			if autocomplete then
 				vim.api.nvim_feedkeys(completion, "n", false)
