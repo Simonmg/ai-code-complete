@@ -1,18 +1,18 @@
+local curl = require("plenary.curl")
+
 local M = {}
 
 local function send_request(url, token, promt)
 	local headers = {
 		["Authorization"] = "Bearer" .. token,
-		["ContentType"] = "application/json",
+		["Content-Type"] = "application/json",
 	}
 
 	local body = vim.json.encode({ promt = promt })
 
-	local response = vim.fn.curl_easy({
-		url = url,
-		method = "POST",
-		postfields = body,
-		httpheader = headers,
+	local response = curl.post(url, {
+		body = body,
+		headers = headers,
 	})
 
 	return vim.json.decode(response)
