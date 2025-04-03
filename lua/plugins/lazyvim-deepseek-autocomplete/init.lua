@@ -53,14 +53,16 @@ return {
 			local current_line = vim.api.nvim_get_current_line()
 			local autocomplete = deepseek.get_completion(config.get_config, current_line)
 
+			print(autocomplete)
+
 			if autocomplete then
 				vim.api.nvim_feedkeys(completion, "n", false)
 			end
 		end,
 		desc = "Obtiene sugerencias de deepseek",
 	},
-	{
-		event = "TextChangedI",
-		callback = on_text_changed,
-	},
+	-- {
+	-- 	event = "TextChangedI",
+	-- 	callback = on_text_changed,
+	-- },
 }
