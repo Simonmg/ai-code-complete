@@ -5,6 +5,7 @@ local M = {}
 
 function M.setup(opts)
 	vim.api.nvim_create_user_command("DeepseekHolla", function()
+		vim.print(config.get_config())
 		vim.cmd('echo "plugin cargado con nvim"')
 	end, {})
 end
