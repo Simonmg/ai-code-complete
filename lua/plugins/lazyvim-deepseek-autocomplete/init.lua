@@ -1,3 +1,5 @@
+local M = {}
+
 local function show_hello_world()
 	local content = "Hola Mundo"
 	local width = vim.api.nvim_strwidth(content) + 2
@@ -20,10 +22,10 @@ local function show_hello_world()
 	vim.api.nvim_open_win(buf, false, opts)
 end
 
-return {
-	{
-		cmd = "DeepSeekHello", -- Cambiamos el nombre del comando para evitar confusiones
-		callback = show_hello_world,
-		desc = "Muestra Hola Mundo en una ventana flotante",
-	},
-}
+function M.setup()
+	vim.api.nvim_create_user_command("DeepseekHolla", function()
+		vim.cmd('echo "plugin cargado con nvim"')
+	end, {})
+end
+
+return M
