@@ -61,8 +61,8 @@ return {
 		end,
 		desc = "Obtiene sugerencias de deepseek",
 	},
-	-- {
-	-- 	event = "TextChangedI",
-	-- 	callback = on_text_changed,
-	-- },
+	{
+		event = "TextChangedI",
+		callback = on_text_changed,
+	},
 }
