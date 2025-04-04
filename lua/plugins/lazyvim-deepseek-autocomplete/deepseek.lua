@@ -27,6 +27,8 @@ function M.get_completion(config, promt)
 		return nil
 	end
 
+	print(config)
+
 	local response = send_request(url, token, promt)
 
 	if response and response.choises and response.choises[1] then
