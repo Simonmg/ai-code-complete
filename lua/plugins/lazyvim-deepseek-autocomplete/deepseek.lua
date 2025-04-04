@@ -26,7 +26,7 @@ local function send_request(url, token, promp)
 		body = body,
 	})
 
-	print(vim.json.decode(response))
+	print(vim.inspect(response))
 
 	-- return vim.json.decode(response)
 end
