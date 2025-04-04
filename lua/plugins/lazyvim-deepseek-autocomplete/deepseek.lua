@@ -24,6 +24,7 @@ local function send_request(url, token, promp)
 	local response = curl.post(url .. token, {
 		headers = headers,
 		body = body,
+		timeout_ms = 30000,
 	})
 
 	print(vim.inspect(response))
