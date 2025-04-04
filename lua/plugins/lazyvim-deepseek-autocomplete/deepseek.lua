@@ -6,36 +6,28 @@ local function send_request(url, token, promp)
 	print(url, token, promp)
 	local headers = {
 		["Content-Type"] = "application/json",
-		["Authorization"] = "Bearer " .. token,
 	}
 
 	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
 
-	local body = vim.json.encode({
-		model = "deepseek-chat",
-		messages = {
-			{ role = "system", content = promp },
-		},
-		max_tokens = 1000,
-		temperature = 0.0,
-		stream = false,
-	})
+	print(url .. token)
+	local body = vim.json.encode({})
 
-	local response = curl.post(url, {
-		body = body,
-		headers = headers,
-		timeout = 15000,
-		stream = false,
-	})
+	-- local response = curl.post(url .. token, {
+	-- 	body = body,
+	-- 	headers = headers,
+	-- 	timeout = 15000,
+	-- 	stream = false,
+	-- })
 
-	if response and response.body then
-		local data = json.decode(response.body)
-		print(vim.inspect(data))
-	else
-		print("Error en la solicitud")
-	end
+	-- if response and response.body then
+	-- 	local data = json.decode(response.body)
+	-- 	print(vim.inspect(data))
+	-- else
+	-- 	print("Error en la solicitud")
+	-- end
 
-	return vim.json.decode(response)
+	-- return vim.json.decode(response)
 end
 
 function M.get_completion(url, token, promp)
