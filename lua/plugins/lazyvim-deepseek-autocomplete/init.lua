@@ -10,6 +10,7 @@ end
 function M.setup(opts)
 	vim.api.nvim_create_user_command("DeelSeekComplete", function()
 		local current_line = vim.api.nvim_get_current_line()
+		print(opts)
 		local completion = deepseek.get_completion(opts, current_line)
 
 		if completion then
