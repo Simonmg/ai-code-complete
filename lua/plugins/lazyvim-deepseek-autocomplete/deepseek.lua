@@ -12,7 +12,7 @@ local function send_request(url, token, promp)
 	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
 
 	local body = vim.json.encode({
-		model = "deepseek-code",
+		model = "deepseek-chat",
 		messages = {
 			{ role = "user", content = promp },
 		},
