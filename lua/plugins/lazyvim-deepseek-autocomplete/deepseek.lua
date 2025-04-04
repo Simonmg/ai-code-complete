@@ -16,7 +16,12 @@ local function send_request(url, token, promp)
 		headers = headers,
 	})
 
-	print(vim.json.decode(response))
+	if response and response.body then
+		local data = vim.json.decode(response.body)
+		print(vim.inspect(data))
+	else
+		print("Error en la solicitud")
+	end
 
 	-- return vim.json.decode(response)
 end
