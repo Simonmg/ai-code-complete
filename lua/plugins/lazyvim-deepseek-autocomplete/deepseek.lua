@@ -20,10 +20,7 @@ local function send_request(url, token, promt)
 	return vim.json.decode(response)
 end
 
-function M.get_completion(config, promt)
-	local url = config.url
-	local token = config.token
-
+function M.get_completion(url, token, promt)
 	if not url or not token then
 		vim.notify("DeepSeek: Url o token no configurados", vim.log.levels.ERROR)
 		return nil
