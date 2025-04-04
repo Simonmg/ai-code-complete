@@ -25,7 +25,6 @@ local function send_request(url, token, promp)
 		body = body,
 		headers = headers,
 		timeout = 15000,
-		async = true,
 		stream = false,
 	})
 
