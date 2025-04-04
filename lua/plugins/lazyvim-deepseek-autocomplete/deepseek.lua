@@ -5,7 +5,7 @@ local M = {}
 local function send_request(url, token, promp)
 	print(url, token, promp)
 	local headers = {
-		["Authorization"] = "Bearer" .. token,
+		["Authorization"] = "Bearer " .. token,
 		["Content-Type"] = "application/json",
 	}
 
