@@ -28,16 +28,14 @@ local function send_request(url, token, promp)
 		stream = false,
 	})
 
-	print(vim.inspect(response))
+	if response and response.body then
+		local data = json.decode(response.body)
+		print(vim.inspect(data))
+	else
+		print("Error en la solicitud")
+	end
 
-	-- if response and response.body then
-	-- 	local data = json.decode(response.body)
-	-- 	print(vim.inspect(data))
-	-- else
-	-- 	print("Error en la solicitud")
-	-- end
-
-	-- return vim.json.decode(response)
+	return vim.json.decode(response)
 end
 
 function M.get_completion(url, token, promp)
