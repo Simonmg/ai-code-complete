@@ -5,11 +5,18 @@ local M = {}
 local function send_request(url, token, promp)
 	print(url, token, promp)
 	local headers = {
-		["Authorization"] = "Bearer " .. token,
 		["Content-Type"] = "application/json",
+		["Authorization"] = "Bearer " .. token,
 	}
 
-	local body = vim.json.encode({ promt = promt })
+	local body = vim.json.encode({
+		model = "deepseek-chat",
+		messages = {
+			{ role = "user", content = promp },
+		},
+		max_tokens = 100,
+		temperature = 0.7,
+	})
 
 	local response = curl.post(url, {
 		body = body,
