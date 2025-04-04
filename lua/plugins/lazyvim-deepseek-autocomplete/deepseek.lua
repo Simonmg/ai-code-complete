@@ -3,14 +3,11 @@ local curl = require("plenary.curl")
 local M = {}
 
 local function send_request(url, token, promp)
-	print(url, token, promp)
 	local headers = {
 		["Content-Type"] = "application/json",
 	}
 
 	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
-
-	print(url .. token)
 
 	local post_data = {
 		contents = {
@@ -29,7 +26,7 @@ local function send_request(url, token, promp)
 		body = body,
 	})
 
-	print(response)
+	print(vim.json.decode(response))
 
 	-- return vim.json.decode(response)
 end
