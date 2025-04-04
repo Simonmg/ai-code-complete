@@ -4,19 +4,19 @@ local M = {}
 
 local function send_request(url, token, promp)
 	print(url, token, promp)
-	-- local headers = {
-	-- 	["Authorization"] = "Bearer" .. token,
-	-- 	["Content-Type"] = "application/json",
-	-- }
+	local headers = {
+		["Authorization"] = "Bearer" .. token,
+		["Content-Type"] = "application/json",
+	}
 
-	-- local body = vim.json.encode({ promt = promt })
+	local body = vim.json.encode({ promt = promt })
 
-	-- local response = curl.post(url, {
-	-- 	body = body,
-	-- 	headers = headers,
-	-- })
+	local response = curl.post(url, {
+		body = body,
+		headers = headers,
+	})
 
-	-- print(response)
+	print(response)
 
 	-- return vim.json.decode(response)
 end
