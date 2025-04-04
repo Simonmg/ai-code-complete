@@ -29,14 +29,16 @@ function M.get_completion(config, promt)
 		return nil
 	end
 
-	-- local response = send_request(url, token, promt)
+	print(url, token)
 
-	-- if response and response.choises and response.choises[1] then
-	-- 	return response.choises[1].text
-	-- else
-	-- 	vim.notify("DeepSeek: No se pudo obtener la completion", vim.log.levels.ERROR)
-	-- 	return nil
-	-- end
+	local response = send_request(url, token, promt)
+
+	if response and response.choises and response.choises[1] then
+		return response.choises[1].text
+	else
+		vim.notify("DeepSeek: No se pudo obtener la completion", vim.log.levels.ERROR)
+		return nil
+	end
 end
 
 return M
