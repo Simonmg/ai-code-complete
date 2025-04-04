@@ -9,18 +9,23 @@ local function send_request(url, token, promp)
 		["Authorization"] = "Bearer " .. token,
 	}
 
+	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
+
 	local body = vim.json.encode({
-		model = "deepseek-chat",
+		model = "deepseek-code",
 		messages = {
 			{ role = "user", content = promp },
 		},
-		max_tokens = 100,
-		temperature = 0.7,
+		max_tokens = 1000,
+		temperature = 0.3,
+		stream = false,
 	})
 
 	local response = curl.post(url, {
 		body = body,
 		headers = headers,
+		timeout = 10000,
+		async = true,
 	})
 
 	print(vim.inspect(response))
