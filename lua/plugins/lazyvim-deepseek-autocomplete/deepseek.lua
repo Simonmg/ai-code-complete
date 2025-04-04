@@ -16,7 +16,7 @@ local function send_request(url, token, promp)
 		headers = headers,
 	})
 
-	print(response)
+	print(vim.json.decode(response))
 
 	-- return vim.json.decode(response)
 end
