@@ -24,7 +24,7 @@ local function send_request(url, token, promp)
 	local response = curl.post(url, {
 		body = body,
 		headers = headers,
-		timeout = 10000,
+		timeout = 15000,
 		async = true,
 	})
 
