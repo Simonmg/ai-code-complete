@@ -14,10 +14,10 @@ local function send_request(url, token, promp)
 	local body = vim.json.encode({
 		model = "deepseek-chat",
 		messages = {
-			{ role = "user", content = promp },
+			{ role = "system", content = promp },
 		},
 		max_tokens = 1000,
-		temperature = 0.3,
+		temperature = 0.0,
 		stream = false,
 	})
 
@@ -26,6 +26,7 @@ local function send_request(url, token, promp)
 		headers = headers,
 		timeout = 15000,
 		async = true,
+		stream = false,
 	})
 
 	print(vim.inspect(response))
