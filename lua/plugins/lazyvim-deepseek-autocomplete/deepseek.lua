@@ -1,4 +1,4 @@
-local curl = require("plenary.curl")
+local http = require("plenary.curl")
 
 local M = {}
 
@@ -6,6 +6,8 @@ local function send_request(url, token, promp)
 	local headers = {
 		["Content-Type"] = "application/json",
 	}
+
+	local timeout_ms = 30000
 
 	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
 
@@ -24,10 +26,10 @@ local function send_request(url, token, promp)
 
 	local body = vim.json.encode(post_data)
 
-	local response = curl.post(url .. token, {
+	local response = http.post(url .. token, {
 		headers = headers,
 		body = body,
-		timeout_ms = 30000,
+		timeout_ms = timeout_ms,
 	})
 
 	print(vim.inspect(response))
