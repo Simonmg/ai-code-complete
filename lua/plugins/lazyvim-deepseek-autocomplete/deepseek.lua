@@ -30,7 +30,6 @@ local function send_request(url, token, promp)
 		timeout_ms = timeout_ms,
 	})
 
-	-- print(vim.inspect(response.body))
 	return vim.json.decode(response.body)
 end
 
@@ -43,7 +42,7 @@ function M.get_completion(url, token, promp)
 	local response = send_request(url, token, promp)
 
 	if response and response.candidates then
-		return response.candidates[0].content
+		return response.candidates
 	else
 		vim.notify("Gemini: No se pudo obtener la completion", vim.log.levels.ERROR)
 		return nil
