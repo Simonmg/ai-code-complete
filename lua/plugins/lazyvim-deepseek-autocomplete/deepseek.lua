@@ -13,7 +13,10 @@ local function send_request(url, token, promp)
 		contents = {
 			{
 				parts = {
-					text = promp,
+					text = string.format(
+						"Dame sugerencias para la siguiente línea de código:\n```lua\n%s\n```\nConsidera posibles mejoras, errores comunes o alternativas.",
+						promp
+					),
 				},
 			},
 		},
