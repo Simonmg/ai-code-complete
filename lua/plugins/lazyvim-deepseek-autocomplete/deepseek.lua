@@ -9,8 +9,6 @@ local function send_request(url, token, promp)
 
 	local timeout_ms = 30000
 
-	vim.notify("Enviando solicitud...", "info", { title = "deepseek-chat" })
-
 	local post_data = {
 		contents = {
 			{
@@ -32,9 +30,8 @@ local function send_request(url, token, promp)
 		timeout_ms = timeout_ms,
 	})
 
-	print(vim.inspect(response))
-
-	-- return vim.json.decode(response)
+	-- print(vim.inspect(response.body))
+	return vim.json.decode(response.body)
 end
 
 function M.get_completion(url, token, promp)
@@ -45,10 +42,10 @@ function M.get_completion(url, token, promp)
 
 	local response = send_request(url, token, promp)
 
-	if response and response.choises and response.choises[1] then
-		return response.choises[1].text
+	if response and response.candidates then
+		return response.candidates[0].content
 	else
-		vim.notify("DeepSeek: No se pudo obtener la completion", vim.log.levels.ERROR)
+		vim.notify("Gemini: No se pudo obtener la completion", vim.log.levels.ERROR)
 		return nil
 	end
 end
