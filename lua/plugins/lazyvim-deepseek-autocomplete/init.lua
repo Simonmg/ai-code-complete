@@ -1,6 +1,6 @@
 local M = {}
 
-local deepseek = require("plugins.lazyvim-deepseek-autocomplete.deepseek")
+local gemini = require("plugins.lazyvim-deepseek-autocomplete.deepseek")
 
 local function on_text_changed(opts)
 	-- ...
@@ -42,23 +42,39 @@ local function get_selected_text()
 	end
 end
 
-function M.setup(opts)
-	local url = opts.url
-	local token = opts.token
+function send_code_to_gemini()
+	local selected_code = get_selected_text()
 
-	vim.api.nvim_create_user_command("DeekSeekComplete", function()
-		local selected_code = get_selected_text()
+	if not selected_code then
+		return
+	end
 
-		if not selected_code then
-			return
-		end
+	local completion = gemini.get_completion(selected_code)
 
-		local completion = deepseek.get_completion(url, token, selected_code)
-
-		if completion then
-			vim.print(completion[1].content.parts[1].text)
-		end
-	end, {})
+	if completion then
+		vim.print(completion[1].content.parts[1].text)
+	end
 end
 
-return M
+-- function M.setup(opts)
+-- 	local url = opts.url
+-- 	local token = opts.token
+--
+-- 	vim.api.nvim_create_user_command("DeekSeekComplete", function()
+-- 		local selected_code = get_selected_text()
+--
+-- 		if not selected_code then
+-- 			return
+-- 		end
+--
+-- 		local completion = deepseek.get_completion(url, token, selected_code)
+--
+-- 		if completion then
+-- 			vim.print(completion[1].content.parts[1].text)
+-- 		end
+-- 	end, {})
+-- end
+
+return {
+	{ "<leader>ai", send_code_to_gemini, desc = "Consultar la IA con seleccion" },
+}

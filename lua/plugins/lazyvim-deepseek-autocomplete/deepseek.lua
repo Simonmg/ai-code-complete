@@ -1,8 +1,11 @@
 local http = require("plenary.curl")
-
+local config = require("lazyvim-deepseek-autocomplete.config")
 local M = {}
 
-local function send_request(url, token, promp)
+local function send_request(promp)
+	local url = config.url
+	local token = config.token
+
 	local headers = {
 		["Content-Type"] = "application/json",
 	}
