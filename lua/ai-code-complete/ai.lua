@@ -1,5 +1,5 @@
 local http = require("plenary.curl")
-local config = require("plugins.lazyvim-deepseek-autocomplete.config")
+local config = require("config")
 local M = {}
 
 local function send_request(promp)
