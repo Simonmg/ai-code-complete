@@ -1,6 +1,8 @@
 local M = {}
 
-local gemini = require("plugins.lazyvim-deepseek-autocomplete.deepseek")
+local ai = require("ai")
+
+print("Pruba de plugin")
 
 local function on_text_changed(opts)
 	-- ...
@@ -49,7 +51,7 @@ function send_code_to_gemini()
 		return
 	end
 
-	local completion = gemini.get_completion(selected_code)
+	local completion = ai.get_completion(selected_code)
 
 	if completion then
 		vim.print(completion[1].content.parts[1].text)

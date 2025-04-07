@@ -38,7 +38,7 @@ end
 
 function M.get_completion(url, token, promp)
 	if not url or not token then
-		vim.notify("DeepSeek: Url o token no configurados", vim.log.levels.ERROR)
+		vim.notify("AI: Url o token no configurados", vim.log.levels.ERROR)
 		return nil
 	end
 
@@ -47,7 +47,7 @@ function M.get_completion(url, token, promp)
 	if response and response.candidates then
 		return response.candidates
 	else
-		vim.notify("Gemini: No se pudo obtener la completion", vim.log.levels.ERROR)
+		vim.notify("AI: No se pudo obtener la completion", vim.log.levels.ERROR)
 		return nil
 	end
 end
